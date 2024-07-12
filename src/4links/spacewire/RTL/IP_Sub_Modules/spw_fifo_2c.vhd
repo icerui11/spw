@@ -200,8 +200,14 @@ begin
     Din_IR  	<= not Clear and next_WA /= RA;
 --    wr_en   	<= '1' when not Clear and Din_OR and next_WA /= RA else '0';
 --	next_RA 	<= (RA + 1) mod 2048;
-    Dout_OR  	<= not clear and OE and WAd /= RA;
-	
+--    Dout_OR  	<= not clear and OE and WAd /= RA;
+process(Out_clock)
+begin
+if rising_edge(Out_clock) then
+  Dout_OR <= not clear and OE and WAd /= RA;
+--      Dout_OR <= Dout_OR_reg;
+end if;
+end process;
 	----------------------------------------------------------------------------------------------------------------------------
 	-- Synchronous Processes --
 	----------------------------------------------------------------------------------------------------------------------------
