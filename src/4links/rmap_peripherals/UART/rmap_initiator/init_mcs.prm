@@ -1,0 +1,14 @@
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX1
+Size               4M
+Start Address      0x00000000
+End Address        0x003FFFFF
+Checksum           0x2CF91A3B
+Fill Value         0xFF
+
+Addr1         Addr2         Date                    File(s)                                                                                                                                              Checksum
+0x00000000    0x0012F2CB    Oct 13 11:31:57 2023    C:/Users/JamesLogan/Documents/4links/git/cmod_s7_usb_to_spw_Initiator/cmod_s7_usb_to_spw_Initiator.runs/impl_1/usb_to_spw_initiator_top_level.bit    0x0018F36F
+File Checksum Total                                                                                                                                                                                      0x0018F36F

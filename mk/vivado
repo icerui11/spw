@@ -1,0 +1,8 @@
+#!/bin/bash
+set -x
+export XILINXD_LICENSE_FILE=2100@engineering:/usr/xilinx/flexlm_v11.17.2.0/Xilinx.lic
+.  /opt/Xilinx/Vivado/2023.2/settings64.sh
+
+cd $1
+shift
+exec vivado "$@"

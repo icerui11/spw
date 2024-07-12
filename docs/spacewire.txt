@@ -1,0 +1,63 @@
+SpaceWire
+*********
+
+How to use it
+*************
+The code src/4links/spacewire is used to receive and transmit data, the code shown here maybe non optimal as it is designed to show how to use the data
+
+
+Recieving Data
+**************
+Rx_Data             - The spacewire character that has been received
+                        This appears to be a nine bit character, the top bit indicates that it is a special spacewire character
+                        generally an EOP (SPW_EOP) or an EEP (SPW_EEP)
+
+Rx_Data_IR          - Recieve Data Input Ready
+                      This is set when your application is ready to receive the next Spacewire characeter
+
+Rx_Data_OR          - Recieve Data Output Ready
+                      This is set when the Rx_Data contains a valid character
+
+
+When receiving data its to have the following logic
+
+    wait_next_chr   =>  -- indicate ready for the next character
+                    Rx_Data_IR <= true;
+
+    next_chr_arrived
+                    if Rx_Data_OR
+                    then
+                        Rx_Data_IR <= false;
+                        state <= wait_next_chr;
+
+                        -- Handle the character that you have seen
+                        data = Rx_Data;
+                    fi
+
+
+Transmitting Data
+*****************
+
+Tx_Data             - The spacewire character to transmit
+
+Tx_Data_OR          - Transmit Data Output ready
+                        The application has data to transmit
+
+Tx_Data_IR          - Transmit Data Input Ready
+                        The spacewire stack is ready to transmit a character
+
+The following logic shows how to queue data for transmission on the spacewlink assuming data is ready to transmit.
+TX_Data_OR must be initialized to false
+
+    wait_for_tx
+                if Tx_Data_IR
+                then
+                    Tx_Data_OR <= true;
+                    Tx_Data <= data;
+                    state <= queued_data;
+                fi
+
+    queued_data 
+                Tx_Data_OR <= false;
+                state <= wait_for_tx
+

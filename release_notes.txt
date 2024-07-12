@@ -1,0 +1,42 @@
+The following are release notes for 4Links Opensource SpaceWire IP Repositry.
+
+
+
+Relase Version 	: 	1.02 (Initial Release)
+Date			:	02/10/2023  (DD/MM/YY)
+Notes Author	: 	James E Logan (4Links ltd)
+
+Version Notes:
+
+This is the initial public release of 4Links Opensouce SpaceWire IP Cores. This release includes the following:
+
+-- 	SpaceWire CoDec:
+	SpaceWire Transciever for establishing and maintaining the low-level SpaceWire connection. Supports the sending of Data, Timecodes and Error codes
+	over the spacewire link. This IP is used by all 4Links RMAP IP to implement the SpaceWire link. 
+	
+--	RMAP Target: 
+	Implements an RMAP Target for memory mapped applications over SpaceWire. 
+	Implements RMAP CRC checking and creation for Rx/Tx communication.
+
+-- 	RMAP Initiator: 
+	Implements an RMAP Initiator for construction of RMAP Frames to be transmitted over a SpaceWire link. 
+	Has Parallel/Serial interface options. Performs CRC creation and checking for Tx/Rx communication.
+	Seperate RMAP Header & Data Interfaces for ease of implementation. 
+
+-- 	RMAP Peripheral UART Target & Initiator:
+	Basic UART to RMAP/SpaceWire Bridge IP for RMAP Target and RMAP Initiator. 
+	Initiator takes UART data with a shortened RMAP protocol and transmits via spaceiwre. 
+	Target Takes RMAP over Spacewire and transmits over UART. Examples should be modified to implement features as required. 
+
+-- 	RMAP Router:
+	A SpaceWire/RMAP Router IP. Configurable upto 32 Ports (1 Virtual, 31 Physical). Implements a non-blocking X-Bar switch 
+	and multiple port arbitration methods. Implementation tested on a Xilinx XKCU040 with SpaceWire line-rates >400MHz for both 13
+	and 32* port designs. Virtual port (0) implements an RMAP Target for reading/writing the router configuration space and routing table. 
+	XBar switch fabric bus-width configurable from 9bit to 36-bit transactions, Gray-FiFo used for clock-domain crossing between
+	SpaceWire Port and Router Logic clock domain(s). 
+	
+
+TCL scripts for building projects (Vivado) in /tcl directory. Instructions for manually importing IP into your project are
+included in the respective IP documentation scr/4Links/IP_NAME/Docs
+
+New release notes will be added ABOVE this section.
